@@ -36,7 +36,6 @@ Build a functional and scalable e-commerce platform with industry-standard best 
 
 ## 📊 **Key Performance Indicators (KPIs)**  
 - **Average checkout time:** ≤3 seconds.  
-- **Cart abandonment rate:** ≤40%.  
 - **Uptime:** 99.9%+.  
 - **Order processing accuracy:** 99%.  
 - **Page load speed:** ≤2 seconds.  
