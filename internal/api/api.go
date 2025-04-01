@@ -29,7 +29,9 @@ func (h *Handler) Routes() http.Handler {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
-	router.Mount("/api/auth", auth_router.New(h.DbPool, h.Validator).Routes())
+	router.Route("/api", func(childRoute chi.Router) {
+		childRoute.Mount("/auth", auth_router.New(h.DbPool, h.Validator).Routes())
+	})
 
 	return router
 }
