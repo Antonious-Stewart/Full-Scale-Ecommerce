@@ -7,4 +7,4 @@ vet:
 	go vet ./...
 
 run: fmt vet
-	go run main.go
+	goose up && air

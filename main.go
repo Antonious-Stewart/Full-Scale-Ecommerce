@@ -24,6 +24,7 @@ func main() {
 		Handler:      api.APIHandler(),
 	}
 
+	log.Println("Listening on port" + port)
 	err = serve.ListenAndServe()
 
 	if err != nil {
