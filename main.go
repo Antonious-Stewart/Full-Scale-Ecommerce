@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"github.com/Antonious-Stewart/Full-Scale-Ecommerce/internal/api"
 	"github.com/Antonious-Stewart/Full-Scale-Ecommerce/internal/config"
 	"log"
 	"net/http"
@@ -20,6 +21,7 @@ func main() {
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 90 * time.Second,
 		IdleTimeout:  120 * time.Second,
+		Handler:      api.APIHandler(),
 	}
 
 	err = serve.ListenAndServe()
