@@ -3,7 +3,7 @@
 
 CREATE TYPE order_status AS ENUM ('active', 'canceled');
 
-create table if not exists users (
+create table if not exists customers (
                                      id uuid not null primary key,
                                      first_name varchar(255) not null,
                                      last_name varchar(255) not null,
@@ -11,7 +11,9 @@ create table if not exists users (
                                      phone varchar(10) not null unique,
                                      created_at TIMESTAMP default NOW(),
                                      updated_at TIMESTAMP default Now(),
-    order_history uuid[] default '{}'::uuid[]
+                                     tokens varchar[] default '{}'::varchar[],
+                                     password varchar not null,
+                                     order_history uuid[] default '{}'::uuid[]
 );
 
 create table if not exists orders (
@@ -20,8 +22,9 @@ create table if not exists orders (
                                       status order_status default 'active',
                                       created_at TIMESTAMP default NOW(),
                                       updated_at TIMESTAMP default Now(),
+                                      products int[] default '{}'::int[],
                                       constraint fk_constraint foreign key (user_id)
-                                          references users(id)
+                                          references customers(id)
 );
 
 create table if not exists inventories (
@@ -39,6 +42,6 @@ create table if not exists inventories (
 -- +goose StatementBegin
 drop table inventories;
 drop table orders;
-drop table users;
+drop table customers;
 drop type order_status;
 -- +goose StatementEnd
