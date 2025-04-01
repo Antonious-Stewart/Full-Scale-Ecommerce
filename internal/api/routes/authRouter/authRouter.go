@@ -25,7 +25,7 @@ type AuthRouter struct {
 	Validator *validator.Validate
 }
 
-type RegisterRequest struct {
+type registerRequest struct {
 	FirstName string `json:"firstName" validate:"required"`
 	LastName  string `json:"lastName" validate:"required"`
 	Email     string `json:"email" validate:"required,email"`
@@ -87,7 +87,7 @@ func sliceToSQLString(strArr []string) string {
 func (a *AuthRouter) registerCustomer(w http.ResponseWriter, r *http.Request) {
 	// get customer data from the request body
 	pool := a.DB.GetConnection()
-	var req RegisterRequest
+	var req registerRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 
 	if err != nil {
