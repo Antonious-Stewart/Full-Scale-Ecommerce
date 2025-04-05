@@ -5,14 +5,14 @@ CREATE TYPE order_status AS ENUM ('active', 'canceled');
 
 create table if not exists customers (
                                      id uuid not null primary key,
-                                     first_name varchar(255) not null,
-                                     last_name varchar(255) not null,
+                                     first_name varchar(255) default '',
+                                     last_name varchar(255) default '',
                                      email varchar(255) not null unique,
-                                     phone varchar(10) not null unique,
+                                     phone varchar(10) unique default '',
                                      created_at TIMESTAMP default NOW(),
                                      updated_at TIMESTAMP default Now(),
                                      tokens varchar[] default '{}'::varchar[],
-                                     password varchar not null,
+                                     password bytea not null,
                                      order_history uuid[] default '{}'::uuid[]
 );
 
